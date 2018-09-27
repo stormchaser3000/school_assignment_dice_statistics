@@ -13,7 +13,7 @@ def times(lst, x):
             times += 1
     return times
 
-if num_rolls >= 1:
+while num_rolls >= 1:
     for i in range(num_rolls):
         die1 = random.randint(1,6)
         die2 = random.randint(1,6)
@@ -27,7 +27,8 @@ if num_rolls >= 1:
     # print the statistics
     print("\nDice rolling statistics:")
     for i in range(max_dice_num):
-
         print(f"{i + 1}s: {times(totals, i)}")
+
+    num_rolls = int(input('Enter number of rolls:\n'))
 else:
     print('Invalid number of rolls. Try again.')
