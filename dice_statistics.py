@@ -1,34 +1,42 @@
 import random
 
-num_sixes = 0
-num_sevens = 0
+# get input from the user
 num_rolls = int(input('Enter number of rolls:\n'))
-totals = []
+
+# print a newline to make the output cleaner
+print()
+
+# make a dictionary to store the dice roll values
+totals = {}
 
 # define a function to get the numbers from the totals list
-def times(lst, x):
-    times = 0
-    for i in lst:
-        if i == x:
-            times += 1
-    return times
+def times(value):
+    if value > 0:
+        for i in range(value):
+            print('*', end=' ')
 
 while num_rolls >= 1:
+    # get the total of each roll and then add the data to the dictionary
     for i in range(num_rolls):
         die1 = random.randint(1,6)
         die2 = random.randint(1,6)
         roll_total = die1 + die2
-
-        # add the sum of the dice to a dictionary each roll
-        totals.append(roll_total)
-
-    max_dice_num = 12
+        if str(roll_total) in totals:
+            totals[str(roll_total)] += 1
+        else:
+            totals[str(roll_total)] = 1
 
     # print the statistics
-    print("\nDice rolling statistics:")
-    for i in range(max_dice_num):
-        print(f"{i + 1}s: {times(totals, i)}")
+    for i in totals:
+        print(f"{i}s:", end=' ')
+        times(totals[i])
+        print()
 
+
+    # print a newline for cleanliness
+    print()
+
+    # get the next number of rolls
     num_rolls = int(input('Enter number of rolls:\n'))
 else:
     print('Invalid number of rolls. Try again.')
